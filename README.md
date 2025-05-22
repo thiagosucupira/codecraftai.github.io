@@ -2,11 +2,11 @@
 
 ## Assistente de Desenvolvimento Inteligente Baseado em IA
 
-CodeCraftAI é uma solução avançada de automação de desenvolvimento que atua como um desenvolvedor júnior virtual, utilizando inteligência artificial para automatizar tarefas repetitivas, melhorar a qualidade do código e acelerar o ciclo de desenvolvimento de software. Ele opera de forma autónoma na nuvem da empresa, integrando-se perfeitamente ao fluxo de trabalho existente.
+CodeCraftAI é uma solução avançada de automação de desenvolvimento que atua como um desenvolvedor júnior virtual, utilizando inteligência artificial para automatizar tarefas repetitivas, melhorar a qualidade do código e acelerar o ciclo de desenvolvimento de software. Ele opera de forma autônoma na nuvem da empresa, integrando-se perfeitamente ao fluxo de trabalho existente.
 
 ## Visão Geral
 
-O CodeCraftAI foi projetado para funcionar como um membro proativo da equipa de desenvolvimento. Ele monitoriza repositórios, analisa código, consulta documentação interna e implementa testes unitários e melhorias de forma autónoma. Além da interação via interface, o CodeCraftAI comunica proativamente o seu progresso e descobertas através de email e Microsoft Teams, mantendo a equipa informada.
+O CodeCraftAI foi projetado para funcionar como um membro proativo da equipe de desenvolvimento. Ele monitora repositórios, analisa código, consulta documentação interna e implementa testes unitários e melhorias de forma autônoma. Além da interação via interface, o CodeCraftAI comunica proativamente seu progresso e descobertas através de email e Microsoft Teams, mantendo a equipe informada.
 
 ### Principais Funcionalidades
 
@@ -14,7 +14,7 @@ O CodeCraftAI foi projetado para funcionar como um membro proativo da equipa de 
 - **Geração Contextual de Testes Unitários**: Implementa testes unitários de alta qualidade com base na documentação e no código existente
 - **Integração com Ferramentas de Desenvolvimento**: Trabalha perfeitamente com Git, Jira e Confluence
 - **Sugestões de Melhorias de Código**: Identifica e corrige problemas de qualidade, segurança e desempenho
-- **Operação Autónoma**: Executa tarefas agendadas ou acionadas por eventos (ex: novo commit) sem intervenção direta do utilizador
+- **Operação Autônoma**: Executa tarefas agendadas ou acionadas por eventos (ex: novo commit) sem intervenção direta do usuário
 - **Comunicação Proativa**: Envia notificações por email e Teams sobre PRs criados, testes implementados e métricas de qualidade
 - **Aprendizado Contínuo**: Melhora com o tempo através do feedback dos desenvolvedores
 
@@ -34,11 +34,11 @@ O CodeCraftAI é implementado como um serviço containerizado (Docker) na nuvem 
 - **Base de Dados Vetorial**: Armazena embeddings de documentação.
 - **Fila de Mensagens**: Gerencia tarefas assíncronas.
 
-## Operação Autónoma
+## Operação Autônoma
 
-O CodeCraftAI pode operar de forma autónoma, monitorizando eventos em repositórios Git ou executando tarefas agendadas:
+O CodeCraftAI pode operar de forma autônoma, monitorando eventos em repositórios Git ou executando tarefas agendadas:
 
-1.  **Monitoramento de Commits**: Ao detetar um novo commit, o agente pode analisar as alterações, verificar a cobertura de testes e, se necessário, implementar testes adicionais.
+1.  **Monitoramento de Commits**: Ao detectar um novo commit, o agente pode analisar as alterações, verificar a cobertura de testes e, se necessário, implementar testes adicionais.
 2.  **Análises Agendadas**: Executa análises completas de repositórios em horários definidos (ex: semanalmente) para identificar áreas de melhoria.
 3.  **Notificações Automáticas**: Após completar tarefas significativas (ex: criar um PR, atingir uma meta de cobertura), o agente envia notificações por email e/ou Teams para as partes interessadas relevantes (ex: autor do commit, tech lead).
 
@@ -120,4 +120,3 @@ Para a implementação completa, são recomendados:
 Para mais informações sobre o CodeCraftAI, entre em contato através de:
 
 - Email: thiago.sucupira@conquestone.com
-  
