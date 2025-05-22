@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCraftAI - Demo Interativo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">CC</div>
+                <h1>CodeCraftAI</h1>
+            </div>
+            <div class="header-actions">
+                <button class="btn-outline">Demo</button>
+                <button class="btn-primary">Saiba Mais</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="agent-profile">
+                    <div class="agent-avatar">CC</div>
+                    <h3>CodeCraft</h3>
+                    <p class="agent-subtitle">Seu assistente na nuvem</p>
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        Online
+                    </div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li class="active" data-tab="chat">Chat com CodeCraft</li>
+                        <li data-tab="workflow">Fluxo de Trabalho</li>
+                        <li data-tab="notifications">Notificações Automáticas</li>
+                        <li data-tab="tech">Tecnologias</li>
+                        <li data-tab="dashboard">Dashboard</li>
+                    </ul>
+                </nav>
+                
+                <div class="sidebar-footer">
+                    <p>CodeCraftAI v1.0</p>
+                    <p>© 2025 Todos os direitos reservados</p>
+                </div>
+            </aside>
+
+            <div class="content-area">
+                <div class="tab-content active" id="chat">
+                    <div class="chat-header">
+                        <h2>Chat com CodeCraft</h2>
+                        <p>Seu assistente de desenvolvimento sempre pronto para ajudar</p>
+                    </div>
+                    
+                    <div class="chat-messages">
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Olá! Eu sou o CodeCraft, seu assistente de desenvolvimento. Como posso ajudar hoje?</p>
+                                <div class="message-time">14:30</div>
+                            </div>
+                        </div>
+
+                        <div class="message user">
+                            <div class="message-content">
+                                <p>Por favor, verifique a cobertura de testes unitários no projeto e implemente os que faltam. Caso tenha dúvida, acesse a documentação no Confluence.</p>
+                                <div class="message-time">14:31</div>
+                            </div>
+                        </div>
+
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Vou verificar a cobertura de testes unitários do projeto e implementar os que estão faltando. Primeiro, vou analisar o repositório Git para entender a estrutura do projeto e verificar os testes existentes.</p>
+                                <div class="message-time">14:31</div>
+                            </div>
+                        </div>
+
+                        <div class="system-message">
+                            <div class="system-message-content">
+                                <p>CodeCraft está analisando o repositório Git...</p>
+                            </div>
+                        </div>
+
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Concluí a análise do repositório. Encontrei os seguintes resultados:</p>
+                                <ul>
+                                    <li>Cobertura atual de testes: 68%</li>
+                                    <li>Classes sem testes adequados: UserService, PaymentProcessor</li>
+                                    <li>Métodos críticos sem cobertura: validatePayment(), processRefund()</li>
+                                </ul>
+                                <p>Vou consultar a documentação no Confluence para entender melhor esses componentes antes de implementar os testes.</p>
+                                <div class="message-time">14:32</div>
+                            </div>
+                        </div>
+
+                        <div class="system-message">
+                            <div class="system-message-content">
+                                <p>CodeCraft está consultando a documentação no Confluence...</p>
+                            </div>
+                        </div>
+
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Baseado na documentação do Confluence e na análise do código, vou implementar os testes unitários para as classes UserService e PaymentProcessor. Aqui está minha abordagem:</p>
+                                <ol>
+                                    <li>Criar mocks para as dependências externas</li>
+                                    <li>Implementar casos de teste para fluxos normais e de exceção</li>
+                                    <li>Garantir cobertura de pelo menos 90% para os métodos críticos</li>
+                                </ol>
+                                <p>Deseja que eu prossiga com a implementação?</p>
+                                <div class="message-time">14:33</div>
+                            </div>
+                        </div>
+
+                        <div class="message user">
+                            <div class="message-content">
+                                <p>Sim, por favor, prossiga com a implementação.</p>
+                                <div class="message-time">14:34</div>
+                            </div>
+                        </div>
+
+                        <div class="system-message">
+                            <div class="system-message-content">
+                                <p>CodeCraft está implementando os testes unitários...</p>
+                            </div>
+                        </div>
+
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Concluí a implementação dos testes unitários. Aqui está um resumo do que foi feito:</p>
+                                <h4>Para UserService:</h4>
+                                <pre class="code">
+@Test
+public void testUserAuthentication_ValidCredentials_ReturnsUser() {
+    // Arrange
+    String email = "user@example.com";
+    String password = "validPassword";
+    User expectedUser = new User(1L, email);
+    when(userRepository.findByEmail(email)).thenReturn(expectedUser);
+    when(passwordEncoder.matches(password, expectedUser.getPassword())).thenReturn(true);
+    
+    // Act
+    User result = userService.authenticate(email, password);
+    
+    // Assert
+    assertNotNull(result);
+    assertEquals(expectedUser.getId(), result.getId());
+    verify(userRepository).findByEmail(email);
+}
+
+@Test
+public void testUserAuthentication_InvalidCredentials_ThrowsException() {
+    // Arrange
+    String email = "user@example.com";
+    String password = "invalidPassword";
+    User user = new User(1L, email);
+    when(userRepository.findByEmail(email)).thenReturn(user);
+    when(passwordEncoder.matches(password, user.getPassword())).thenReturn(false);
+    
+    // Act & Assert
+    assertThrows(AuthenticationException.class, () -> {
+        userService.authenticate(email, password);
+    });
+}</pre>
+
+                                <h4>Para PaymentProcessor:</h4>
+                                <pre class="code">
+@Test
+public void testValidatePayment_ValidPayment_ReturnsTrue() {
+    // Arrange
+    Payment payment = new Payment(100.0, "4111111111111111", "12/25", "123");
+    when(paymentGateway.validateCard(payment.getCardNumber(), 
+                                     payment.getExpiryDate(), 
+                                     payment.getCvv())).thenReturn(true);
+    
+    // Act
+    boolean result = paymentProcessor.validatePayment(payment);
+    
+    // Assert
+    assertTrue(result);
+    verify(paymentGateway).validateCard(payment.getCardNumber(), 
+                                       payment.getExpiryDate(), 
+                                       payment.getCvv());
+}
+
+@Test
+public void testProcessRefund_ValidRefund_ReturnsRefundId() {
+    // Arrange
+    String orderId = "ORD-12345";
+    double amount = 50.0;
+    String expectedRefundId = "REF-67890";
+    when(paymentGateway.processRefund(orderId, amount)).thenReturn(expectedRefundId);
+    
+    // Act
+    String result = paymentProcessor.processRefund(orderId, amount);
+    
+    // Assert
+    assertNotNull(result);
+    assertEquals(expectedRefundId, result);
+    verify(paymentGateway).processRefund(orderId, amount);
+}</pre>
+                                <p>Todos os testes foram executados com sucesso. A cobertura de testes agora está em 92%, superando a meta de 90%.</p>
+                                <div class="message-time">14:36</div>
+                            </div>
+                        </div>
+
+                        <div class="message agent">
+                            <div class="message-content">
+                                <p>Criei um Pull Request com as alterações. Aqui está o resumo:</p>
+                                <div class="pr-card">
+                                    <div class="pr-header">
+                                        <span class="pr-number">#143</span>
+                                        <span class="pr-title">Adicionar testes unitários para UserService e PaymentProcessor</span>
+                                    </div>
+                                    <div class="pr-details">
+                                        <p><strong>Descrição:</strong> Este PR adiciona testes unitários para as classes UserService e PaymentProcessor, aumentando a cobertura de testes de 68% para 92%.</p>
+                                        <p><strong>Alterações:</strong></p>
+                                        <ul>
+                                            <li>Adicionados testes para UserService.authenticate()</li>
+                                            <li>Adicionados testes para PaymentProcessor.validatePayment()</li>
+                                            <li>Adicionados testes para PaymentProcessor.processRefund()</li>
+                                            <li>Configurados mocks para dependências externas</li>
+                                        </ul>
+                                        <p><strong>Cobertura:</strong> 92% (+24%)</p>
+                                    </div>
+                                    <div class="pr-footer">
+                                        <span class="pr-status success">Testes: Passando</span>
+                                        <span class="pr-link">Ver no GitHub</span>
+                                    </div>
+                                </div>
+                                <p>Também enviei notificações automáticas por email e Teams para a equipe. Você pode ver essas notificações na aba "Notificações Automáticas".</p>
+                                <div class="message-time">14:37</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input">
+                        <input type="text" placeholder="Digite sua mensagem..." id="message-input">
+                        <button id="send-button">Enviar</button>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="notifications">
+                    <h2>Notificações Automáticas</h2>
+                    <p class="notification-intro">
+                        O CodeCraftAI envia notificações automáticas por email e Microsoft Teams quando realiza ações importantes, 
+                        sem necessidade de interação direta do usuário. Abaixo estão exemplos dessas notificações:
+                    </p>
+                    
+                    <div class="notification-section">
+                        <h3>Notificações por Email</h3>
+                        
+                        <div class="email-notification">
+                            <div class="email-header">
+                                <div class="email-meta">
+                                    <div><strong>De:</strong> CodeCraftAI &lt;codecraft@empresa.com&gt;</div>
+                                    <div><strong>Para:</strong> Equipe de Desenvolvimento &lt;dev-team@empresa.com&gt;</div>
+                                    <div><strong>Assunto:</strong> [CodeCraftAI] Novo PR: Testes unitários para UserService e PaymentProcessor</div>
+                                    <div><strong>Data:</strong> 22 de Maio, 2025 14:37</div>
+                                </div>
+                            </div>
+                            <div class="email-body">
+                                <p>Olá equipe,</p>
+                                
+                                <p>O CodeCraftAI criou um novo Pull Request (#143) para melhorar a cobertura de testes do projeto.</p>
+                                
+                                <p><strong>Resumo das alterações:</strong></p>
+                                <ul>
+                                    <li>Adicionados testes unitários para UserService e PaymentProcessor</li>
+                                    <li>Aumento de cobertura de testes de 68% para 92% (+24%)</li>
+                                    <li>Todos os testes estão passando</li>
+                                </ul>
+                                
+                                <p><strong>Link para o PR:</strong> <a href="#">https://github.com/empresa/projeto/pull/143</a></p>
+                                
+                                <p>Por favor, revisem as alterações quando possível.</p>
+                                
+                                <p>Atenciosamente,<br>
+                                CodeCraftAI</p>
+                                
+                                <p class="email-footer">Esta é uma notificação automática enviada pelo sistema CodeCraftAI. Por favor, não responda diretamente a este email.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="email-notification">
+                            <div class="email-header">
+                                <div class="email-meta">
+                                    <div><strong>De:</strong> CodeCraftAI &lt;codecraft@empresa.com&gt;</div>
+                                    <div><strong>Para:</strong> Carlos Silva &lt;carlos.silva@empresa.com&gt;</div>
+                                    <div><strong>Assunto:</strong> [CodeCraftAI] Relatório Semanal de Cobertura de Testes</div>
+                                    <div><strong>Data:</strong> 22 de Maio, 2025 08:00</div>
+                                </div>
+                            </div>
+                            <div class="email-body">
+                                <p>Olá Carlos,</p>
+                                
+                                <p>Segue o relatório semanal de cobertura de testes do projeto:</p>
+                                
+                                <p><strong>Métricas atuais:</strong></p>
+                                <ul>
+                                    <li>Cobertura geral: 87% (+5% desde a semana passada)</li>
+                                    <li>Classes com cobertura crítica (&lt;70%): 3 (-2 desde a semana passada)</li>
+                                    <li>PRs criados esta semana: 4</li>
+                                    <li>Testes adicionados: 47</li>
+                                </ul>
+                                
+                                <p><strong>Próximas ações recomendadas:</strong></p>
+                                <ul>
+                                    <li>Implementar testes para OrderService (cobertura atual: 65%)</li>
+                                    <li>Revisar testes de integração para o módulo de pagamentos</li>
+                                </ul>
+                                
+                                <p><strong>Link para o dashboard completo:</strong> <a href="#">https://codecraftai.empresa.com/dashboard</a></p>
+                                
+                                <p>Atenciosamente,<br>
+                                CodeCraftAI</p>
+                                
+                                <p class="email-footer">Esta é uma notificação automática enviada pelo sistema CodeCraftAI. Por favor, não responda diretamente a este email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-section">
+                        <h3>Notificações no Microsoft Teams</h3>
+                        
+                        <div class="teams-notification">
+                            <div class="teams-header">
+                                <div class="teams-avatar">CC</div>
+                                <div class="teams-name">CodeCraftAI Bot</div>
+                                <div class="teams-time">14:37</div>
+                            </div>
+                            <div class="teams-body">
+                                <div class="teams-card">
+                                    <div class="teams-card-header">
+                                        Novo Pull Request Criado
+                                    </div>
+                                    <div class="teams-card-content">
+                                        <p>Criei um novo PR (#143) para melhorar a cobertura de testes:</p>
+                                        <p><strong>Adicionar testes unitários para UserService e PaymentProcessor</strong></p>
+                                        <ul>
+                                            <li>Cobertura: 92% (+24%)</li>
+                                            <li>Status: ✅ Todos os testes passando</li>
+                                        </ul>
+                                    </div>
+                                    <div class="teams-card-actions">
+                                        <button class="teams-button primary">Ver PR</button>
+                                        <button class="teams-button">Ver Detalhes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="teams-notification">
+                            <div class="teams-header">
+                                <div class="teams-avatar">CC</div>
+                                <div class="teams-name">CodeCraftAI Bot</div>
+                                <div class="teams-time">09:15</div>
+                            </div>
+                            <div class="teams-body">
+                                <div class="teams-card">
+                                    <div class="teams-card-header">
+                                        Alerta de Cobertura de Testes
+                                    </div>
+                                    <div class="teams-card-content">
+                                        <p>Detectei uma queda na cobertura de testes após o último commit:</p>
+                                        <p><strong>Commit:</strong> a7f8d92 (Adicionar funcionalidade de processamento de pagamentos)</p>
+                                        <p><strong>Autor:</strong> Maria Souza</p>
+                                        <p><strong>Impacto:</strong> Cobertura do módulo de pagamentos caiu de 85% para 68%</p>
+                                        <p>Posso gerar testes unitários para restaurar a cobertura. Deseja que eu proceda?</p>
+                                    </div>
+                                    <div class="teams-card-actions">
+                                        <button class="teams-button primary">Sim, gerar testes</button>
+                                        <button class="teams-button">Não, ignorar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="teams-notification">
+                            <div class="teams-header">
+                                <div class="teams-avatar">CC</div>
+                                <div class="teams-name">CodeCraftAI Bot</div>
+                                <div class="teams-time">Ontem</div>
+                            </div>
+                            <div class="teams-body">
+                                <p>Concluí a análise agendada do repositório. Encontrei 5 classes com cobertura abaixo de 70%. Criei um ticket no Jira (PROJ-423) com os detalhes e recomendações.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="notification-section">
+                        <h3>Operação Autônoma</h3>
+                        <p>O CodeCraftAI opera de forma autônoma em um container Docker na nuvem da empresa, realizando as seguintes ações sem intervenção direta:</p>
+                        
+                        <div class="autonomous-actions">
+                            <div class="action-item">
+                                <div class="action-icon">🔄</div>
+                                <div class="action-content">
+                                    <h4>Monitoramento Contínuo</h4>
+                                    <p>Monitora repositórios Git em busca de novos commits e alterações que possam afetar a cobertura de testes.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="action-item">
+                                <div class="action-icon">📊</div>
+                                <div class="action-content">
+                                    <h4>Análises Agendadas</h4>
+                                    <p>Executa análises completas de repositórios em horários pré-definidos (ex: diariamente às 3h da manhã).</p>
+                                </div>
+                            </div>
+                            
+                            <div class="action-item">
+                                <div class="action-icon">📝</div>
+                                <div class="action-content">
+                                    <h4>Geração Proativa de Testes</h4>
+                                    <p>Identifica classes com cobertura insuficiente e implementa testes unitários automaticamente.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="action-item">
+                                <div class="action-icon">📨</div>
+                                <div class="action-content">
+                                    <h4>Comunicação Automática</h4>
+                                    <p>Envia relatórios, alertas e notificações por email e Teams com base em eventos ou agendamentos.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="action-item">
+                                <div class="action-icon">🔄</div>
+                                <div class="action-content">
+                                    <h4>Integração com CI/CD</h4>
+                                    <p>Responde a eventos de pipeline CI/CD, analisando resultados de build e testes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="workflow">
+                    <h2>Fluxo de Trabalho</h2>
+                    <div class="workflow-container">
+                        <div class="workflow-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Análise de Documentação</h3>
+                                <p>O CodeCraft analisa documentos do Confluence usando RAG (Retrieval-Augmented Generation) para compreender requisitos e arquitetura.</p>
+                                <div class="tech-badge">
+                                    <strong>Tecnologias:</strong> LLM, RAG, APIs Confluence
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Geração de Código e Testes</h3>
+                                <p>Com base na análise, o CodeCraft gera código Java e testes unitários automaticamente, garantindo cobertura de 70%.</p>
+                                <div class="tech-badge">
+                                    <strong>Tecnologias:</strong> LLM para geração de código, JUnit para testes
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Integração com Git e Jira</h3>
+                                <p>O CodeCraft cria branches, commits e PRs no Git, além de atualizar tickets Jira com status e métricas de cobertura.</p>
+                                <div class="tech-badge">
+                                    <strong>Tecnologias:</strong> GitPython, APIs Jira, Webhooks
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h3>Notificações Automáticas</h3>
+                                <p>O CodeCraft envia notificações por email e Microsoft Teams sobre PRs criados, testes implementados e métricas de qualidade.</p>
+                                <div class="tech-badge">
+                                    <strong>Tecnologias:</strong> SMTP/Graph API, Microsoft Teams API
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="workflow-step">
+                            <div class="step-number">5</div>
+                            <div class="step-content">
+                                <h3>Feedback e Melhoria Contínua</h3>
+                                <p>O CodeCraft aprende com feedback dos desenvolvedores, melhorando continuamente suas sugestões e testes.</p>
+                                <div class="tech-badge">
+                                    <strong>Tecnologias:</strong> Aprendizado por reforço, métricas de qualidade
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="tech">
+                    <h2>Tecnologias e Frameworks</h2>
+                    
+                    <p class="tech-intro">
+                        O CodeCraftAI utiliza um conjunto robusto de tecnologias modernas para oferecer automação inteligente 
+                        de sugestões de PR e implementação de testes unitários, integrando-se perfeitamente com suas ferramentas existentes.
+                    </p>
+                    
+                    <div class="tech-grid">
+                        <div class="tech-category">
+                            <div class="tech-header">Inteligência Artificial</div>
+                            <div class="tech-items">
+                                <div class="tech-item">
+                                    <div class="tech-name">LLMs (Large Language Models)</div>
+                                    <div>Modelos de linguagem avançados como GPT-4 para geração de código e compreensão de contexto.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">RAG (Retrieval-Augmented Generation)</div>
+                                    <div>Sistema que combina recuperação de informações com geração de texto para análise precisa de documentação.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-category">
+                            <div class="tech-header">Backend</div>
+                            <div class="tech-items">
+                                <div class="tech-item">
+                                    <div class="tech-name">Python</div>
+                                    <div>Linguagem principal para o backend, processamento de dados e integração com LLMs.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">LangChain</div>
+                                    <div>Framework para integração de LLMs com outras ferramentas e fontes de dados.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Bases de Dados Vetoriais</div>
+                                    <div>FAISS ou Pinecone para armazenamento eficiente de embeddings de documentos.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-category">
+                            <div class="tech-header">Integrações</div>
+                            <div class="tech-items">
+                                <div class="tech-item">
+                                    <div class="tech-name">GitPython</div>
+                                    <div>Biblioteca para operações Git como criação de branches, commits e PRs.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">APIs REST</div>
+                                    <div>Integração com Jira e Confluence para acesso a tickets e documentação.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">JUnit</div>
+                                    <div>Framework para testes unitários em Java, garantindo cobertura de código.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Microsoft Graph API</div>
+                                    <div>Para envio de emails e integração com Microsoft 365.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Microsoft Teams API</div>
+                                    <div>Para envio de notificações e interação via chat no Teams.</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-category">
+                            <div class="tech-header">Infraestrutura</div>
+                            <div class="tech-items">
+                                <div class="tech-item">
+                                    <div class="tech-name">Docker</div>
+                                    <div>Containerização para implantação consistente e isolada.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Cloud Deployment</div>
+                                    <div>Implantação em nuvem (AWS/Azure/GCP) para escalabilidade e processamento de grandes volumes de documentação.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Webhooks</div>
+                                    <div>Para integração em tempo real com sistemas Git, Jira e Confluence.</div>
+                                </div>
+                                <div class="tech-item">
+                                    <div class="tech-name">Kubernetes</div>
+                                    <div>Para orquestração de containers em ambiente de produção.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="compatibility-note">
+                        <h3>Compatibilidade e Extensibilidade</h3>
+                        <p>
+                            O CodeCraftAI foi projetado para ser altamente compatível com ambientes de desenvolvimento existentes
+                            e facilmente extensível para novas ferramentas e linguagens. A arquitetura modular permite adicionar
+                            suporte para novas linguagens de programação além do Java, bem como integrar com sistemas adicionais
+                            conforme necessário.
+                        </p>
+                    </div>
+                    
+                    <div class="architecture-diagram">
+                        <h3>Arquitetura e Topologia</h3>
+                        <p>O diagrama abaixo ilustra a arquitetura de alto nível do CodeCraftAI e sua topologia de implantação:</p>
+                        <div class="diagram-placeholder">
+                            <pre class="ascii-diagram">
+┌─────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                     Nuvem Corporativa (AWS/Azure/GCP)                           │
+│                                                                                                 │
+│  ┌─────────────────────────────────────────────────────────────────────────────────────────┐   │
+│  │                                  Cluster Kubernetes                                      │   │
+│  │                                                                                          │   │
+│  │  ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐               │   │
+│  │  │  CodeCraftAI Pod   │   │  Vector DB Pod     │   │  Message Queue Pod │               │   │
+│  │  │  ┌──────────────┐  │   │  ┌──────────────┐  │   │  ┌──────────────┐  │               │   │
+│  │  │  │ API Container│  │   │  │ FAISS/Pinecone│  │   │  │ RabbitMQ    │  │               │   │
+│  │  │  └──────────────┘  │   │  └──────────────┘  │   │  └──────────────┘  │               │   │
+│  │  │  ┌──────────────┐  │   │                    │   │                    │               │   │
+│  │  │  │ Worker       │  │   │                    │   │                    │               │   │
+│  │  │  │ Container    │  │   │                    │   │                    │               │   │
+│  │  │  └──────────────┘  │   │                    │   │                    │               │   │
+│  │  │  ┌──────────────┐  │   │                    │   │                    │               │   │
+│  │  │  │ Scheduler    │  │   │                    │   │                    │               │   │
+│  │  │  │ Container    │  │   │                    │   │                    │               │   │
+│  │  │  └──────────────┘  │   │                    │   │                    │               │   │
+│  │  └────────────────────┘   └────────────────────┘   └────────────────────┘               │   │
+│  │                                                                                          │   │
+│  │  ┌────────────────────┐   ┌────────────────────┐                                         │   │
+│  │  │  Database Pod      │   │  Cache Pod         │                                         │   │
+│  │  │  ┌──────────────┐  │   │  ┌──────────────┐  │                                         │   │
+│  │  │  │ PostgreSQL   │  │   │  │ Redis        │  │                                         │   │
+│  │  │  └──────────────┘  │   │  └──────────────┘  │                                         │   │
+│  │  └────────────────────┘   └────────────────────┘                                         │   │
+│  │                                                                                          │   │
+│  └─────────────────────────────────────────────────────────────────────────────────────────┘   │
+│                                                                                                 │
+│                                                                                                 │
+│  ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐      │
+│  │ LLM API Service │    │ Email Service   │    │ Teams Service   │    │ Monitoring      │      │
+│  │ (OpenAI/Claude) │    │ (SMTP/Graph)    │    │ (MS Teams API)  │    │ (Prometheus)    │      │
+│  └─────────────────┘    └─────────────────┘    └─────────────────┘    └─────────────────┘      │
+│                                                                                                 │
+└─────────────────────────────────────────────────────────────────────────────────────────────────┘
+                    ▲                    ▲                    ▲                    ▲
+                    │                    │                    │                    │
+                    ▼                    ▼                    ▼                    ▼
+┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐  ┌─────────────────────┐
+│                     │  │                     │  │                     │  │                     │
+│  Git Repositories   │  │  Jira/Confluence    │  │  Email/MS Teams     │  │  CI/CD Pipeline     │
+│  (GitHub/GitLab)    │  │  (Atlassian)        │  │  (Microsoft)        │  │  (Jenkins/GitHub)   │
+│                     │  │                     │  │                     │  │                     │
+└─────────────────────┘  └─────────────────────┘  └─────────────────────┘  └─────────────────────┘
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="dashboard">
+                    <h2>Dashboard</h2>
+                    
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Geração de Código</h3>
+                            <div class="metric-value success">85%</div>
+                            <p>Taxa de aceitação de código gerado</p>
+                            <div class="trend up">↑</div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h3>Cobertura de Testes</h3>
+                            <div class="metric-value primary">78%</div>
+                            <p>Média de cobertura de testes unitários</p>
+                            <div class="trend up">↑</div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h3>Tempo Economizado</h3>
+                            <div class="metric-value purple">68%</div>
+                            <p>Redução no tempo de implementação</p>
+                            <div class="trend up">↑</div>
+                        </div>
+                        
+                        <div class="metric-card">
+                            <h3>Qualidade de PRs</h3>
+                            <div class="metric-value orange">92%</div>
+                            <p>PRs aprovados sem revisões maiores</p>
+                            <div class="trend up">↑</div>
+                        </div>
+                    </div>
+                    
+                    <div class="activity-chart">
+                        <h3>Atividade Semanal</h3>
+                        <div class="chart-container">
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 60%"></div>
+                                <div class="bar-prs" style="height: 30%"></div>
+                                <div class="bar-label">Seg</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 75%"></div>
+                                <div class="bar-prs" style="height: 45%"></div>
+                                <div class="bar-label">Ter</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 65%"></div>
+                                <div class="bar-prs" style="height: 35%"></div>
+                                <div class="bar-label">Qua</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 85%"></div>
+                                <div class="bar-prs" style="height: 50%"></div>
+                                <div class="bar-label">Qui</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 100%"></div>
+                                <div class="bar-prs" style="height: 65%"></div>
+                                <div class="bar-label">Sex</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 30%"></div>
+                                <div class="bar-prs" style="height: 20%"></div>
+                                <div class="bar-label">Sáb</div>
+                            </div>
+                            <div class="chart-bar">
+                                <div class="bar-tests" style="height: 20%"></div>
+                                <div class="bar-prs" style="height: 15%"></div>
+                                <div class="bar-label">Dom</div>
+                            </div>
+                        </div>
+                        <div class="chart-legend">
+                            <div class="legend-item">
+                                <div class="legend-color prs"></div>
+                                <div>PRs Gerados</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color tests"></div>
+                                <div>Testes Unitários</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="benefits-section">
+                        <h3>Benefícios por Público</h3>
+                        
+                        <div class="benefit-group">
+                            <h4>Para Investidores</h4>
+                            <p>
+                                ROI significativo com redução de 68% no tempo de desenvolvimento e aumento de 92% na qualidade de código,
+                                resultando em menor custo de manutenção e maior velocidade de entrega.
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-group">
+                            <h4>Para Equipa Técnica</h4>
+                            <p>
+                                Redução de tarefas repetitivas, permitindo foco em trabalho de maior valor. Automação de 78% dos testes unitários
+                                e sugestões de código que são aceitas em 85% dos casos.
+                            </p>
+                        </div>
+                        
+                        <div class="benefit-group">
+                            <h4>Para Gestores</h4>
+                            <p>
+                                Métricas claras de produtividade, qualidade de código e previsibilidade. Visibilidade em tempo real do progresso
+                                e garantia de conformidade com padrões de qualidade.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
